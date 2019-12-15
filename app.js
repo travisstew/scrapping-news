@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const axios = require('axios');
-const cheerio  = require('cheerio');
 const exphbs = require('express-handlebars');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,13 +16,20 @@ mongoose.connect('mongodb://localhost/newsScrap', { useNewUrlParser: true, useUn
 });
 
 
+//scrapped database when app is ran
+require('./scrappedArticle/article');
+
+
 
 //template engine
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+//routes 
 app.use('/', require('./routes/index'));
-require('./scrappedArticle/article')
+app.use('/user', require('./routes/users'));
+
+
 app.listen(PORT,function () { 
   console.log('listening on port ' + PORT);
  });

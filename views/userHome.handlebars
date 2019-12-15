@@ -1,0 +1,27 @@
+<div class="jumbotron">
+  <h1 class="display-4">News Scrapping</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacingdf;hadjkfhkj to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Login In</a>       
+</div>
+
+ {{#each data}}
+          
+       
+<div class="card text-center" id="{{_id}}">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body" >
+  <h5 class="card-title" ><a href="https://www.newyorker.com/{{URL}}">{{Headline}}</a></h5>
+  <p class="card-text"  >{{Summary}}</p>
+    <a href="#" class="btn btn-primary">Save Article</a>
+  </div>
+  <div class="card-footer text-muted">
+    
+
+  </div>
+</div>
+
+ {{/each}}
