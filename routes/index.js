@@ -1,33 +1,75 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
-const cheerio  = require('cheerio');
+
 const db = require('../model');
 
 
-// router.get('/',(req,res)=>{
-//   // Article.create({
-//   //   Headline:'travis',
-//   //   Summary: 'stew',
-//   //   URL: 'www.yahoo.com'
-//   // });
+const axios = require('axios');
+const cheerio  = require('cheerio');
 
-//   // db.User.create({
-//   //   user:'steiiew',
-//   //   password:'dflja'
-//   // });
 
-//   db.Comment.create({
-//     user:'steiiw',
-//     comment:"hello ds"
-//   }).then(function (comment) { 
-//      return db.User.findOneAndUpdate({},{$push:{comments:comment._id}},{new:true});
-//    });
-//   res.send('hello');
-// });
-router.get('/home',(req,res)=>{
-  res.render('home');
+
+router.get('/',(req,res)=>{
+ 
+  // db.Comment.create({
+  //   user:'steiiw',
+  //   comment:"hello ds"
+  // }).then(function (comment) { 
+  //    return db.User.findOneAndUpdate({},{$push:{comments:comment._id}},{new:true});
+  //  });
+  // res.send('hello');
+
+  axios.get("https://www.newyorker.com/popular").then(response=>{
+    
+    const $ = cheerio.load(response.data);
+    var headlines=[];
+    var summarys = [];
+    var links = [];
+   
+    const headline  = $('h3.Card__hed___3aD8c')
+
+    headline.each((i,element)=>{
+        headlines.push($(element).html());
+    });
+  
+    const summary = $('p.Card__dek___2E3rB')
+    summary.each((i,e)=>{
+      summarys.push($(e).html());
+      
+    });
+    const url = $('div.MostPopularRiver__mostPopularRiverContainer___2ajQI')
+  
+    url.each((i,e)=>{
+      links.push($(e).find('a').attr('href'));
+    });
+    
+    for(let i=0;i < headlines.length;i++){
+        db.Article.create({
+            Headline: headlines[i],
+            Summary: summarys[i],
+            URL: links[i]
+        }).catch(function (err) {
+          if(err) throw err;
+          });
+    }
+  });
+  
+    db.Article.find({}).then(function (e) {
+        
+      res.render('home',{data:e});
+  });
+
+
 });
+
+
+// router.get('/home',(req,res)=>{
+
+//   db.Article.find({}).then(function (e) {
+//      res.render('home',);
+//   });
+ 
+// });
 
 
 module.exports = router;

@@ -11,9 +11,9 @@ const UserSchema = new mongoose.Schema({
     required:true,
     type:String
   },
-  comments:[{
+  notes:[{
     type: Schema.Types.ObjectId,
-    ref:"Comment"
+    ref:"Notes"
   }]
 
 });

@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const Schema  = mongoose.Schema;
 
 const Articles = new Schema({
-  Headline:String,
+  Headline:{
+    type:String,
+    unique: true
+  },
   Summary: String,
-  URL: String
+  URL: String,
+  
 });
 
 const Article = mongoose.model('Article', Articles);

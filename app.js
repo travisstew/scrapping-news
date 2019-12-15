@@ -15,12 +15,15 @@ mongoose.connect('mongodb://localhost/newsScrap', { useNewUrlParser: true, useUn
 }).catch(err=>{
   console.log(err);
 });
+
+
+
 //template engine
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
 app.use('/', require('./routes/index'));
-
+require('./scrappedArticle/article')
 app.listen(PORT,function () { 
   console.log('listening on port ' + PORT);
  });
