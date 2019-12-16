@@ -4,8 +4,6 @@ $(document).ready(function () {
 
       const id = $(this).data('id');
       console.log(id);
-   
-      
 
     })
 

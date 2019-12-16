@@ -5,8 +5,8 @@ const passport = require('passport');
 const authorized = require('../config/authorizedRoutes').ensureAuthenticated;
 const db = require('../model');
 // /user/routes
-// , authorized 
-router.get('/home',(req,res)=>{
+
+router.get('/home', authorized ,(req,res)=>{
     db.Article.find({}).then((data)=>{
       res.render('userHome',{data:data});
 
