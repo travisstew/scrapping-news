@@ -5,8 +5,8 @@ const passport = require('passport');
 const authorized = require('../config/authorizedRoutes').ensureAuthenticated;
 const db = require('../model');
 // /user/routes
-
-router.get('/home', authorized ,(req,res)=>{
+// , authorized 
+router.get('/home',(req,res)=>{
     db.Article.find({}).then((data)=>{
       res.render('userHome',{data:data});
 
@@ -76,6 +76,10 @@ router.get('/logout', (req,res)=>{
 //dashboard 
 router.get('/dashboard',(req,res)=>{
     res.render('dashboard')
+});
+//post saved article
+router.post('/user/dashboard', (req,res)=>{
+   
 });
 
 module.exports = router;
