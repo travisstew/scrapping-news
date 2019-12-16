@@ -16,7 +16,8 @@ require('./config/passport')(passport);
 //static files
 app.use(express.static('public'))
 //mongoose config 
-mongoose.connect('mongodb://localhost/newsScrap', { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify: false}).then(()=>{
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/newsScrap';
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true ,useFindAndModify: false}).then(()=>{
   console.log('mongo connected');
 }).catch(err=>{
   console.log(err);
@@ -24,7 +25,7 @@ mongoose.connect('mongodb://localhost/newsScrap', { useNewUrlParser: true, useUn
 
 
 //scrapped database when app is ran
-// require('./scrappedArticle/article');
+require('./scrappedArticle/article');
 
 
 
