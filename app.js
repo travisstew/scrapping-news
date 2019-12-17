@@ -25,7 +25,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 
 //scrapped database when app is ran
-// require('./scrappedArticle/article');
+require('./scrappedArticle/article');
 
 
 

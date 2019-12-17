@@ -12,7 +12,11 @@ const NoteSchema = new Schema({
     },
     headline:String,
     summary:String,
-    URL: String
+    URL: String,
+    user: {
+      type:Schema.Types.ObjectId,
+      ref:'User'
+    }
 });
 
 const Notes = mongoose.model('Notes', NoteSchema);

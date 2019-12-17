@@ -1,0 +1,23 @@
+<div id="saved-news" class="container">
+ {{#each data.notes}}
+                 
+<div class="card text-center">
+  <div class="card-header">
+  
+  </div>
+  <div class="card-body" >
+  <h5 class="card-title" ><a href="https://www.newyorker.com/{{URL}}">{{headline}}</a></h5>
+  <p class="card-text"  >{{summary}}</p>
+    {{!-- <a  id="save-btn" href="" class="btn btn-primary newsCard" data-id="{{_id}}" >Save Article</a> --}}
+    <button id="save-btn" class="btn btn-primary newsCard" type="button"  data-id="{{_id}}" >Save Article</button>
+  </div>
+  <div class="card-footer text-muted">
+    
+
+  </div>
+</div>
+
+ {{/each}}
+ </div>
+
+ 

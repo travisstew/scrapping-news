@@ -5,8 +5,8 @@ const passport = require('passport');
 const authorized = require('../config/authorizedRoutes').ensureAuthenticated;
 const db = require('../model');
 // /user/routes
-
-router.get('/home', authorized ,(req,res)=>{
+//
+router.get('/home' , authorized ,(req,res)=>{
     db.Article.find({}).then((data)=>{
       res.render('userHome',{data:data});
 
@@ -27,7 +27,6 @@ router.post('/register', (req,res)=>{
           errors: 'this user exist already'
         })
       }else{
-        
        const newUser = new db.User({
          user: user,
          password: password,
@@ -46,8 +45,7 @@ router.post('/register', (req,res)=>{
             console.log(err);
           });
          });
-       })
-        
+       });        
       }
     });
 });
@@ -74,12 +72,32 @@ router.get('/logout', (req,res)=>{
 });
 
 //dashboard 
-router.get('/dashboard',(req,res)=>{
-    res.render('dashboard')
+router.get('/dashboard',authorized, (req,res)=>{
+    db.User.findById(`${req.user._id}`).populate('notes').then(function (notes) {
+              res.render('dashboard', {data:notes})
+      });
 });
+
 //post saved article
-router.post('/user/dashboard', (req,res)=>{
+router.post('/dashboard', (req,res)=>{
+  res.render('dashboard');
+   db.Article.findById(`${req.body.id}`).then(function (article) {
    
+          return article;
+     }).then(function (article) {
+          db.Notes.create({
+              headline:article.Headline,
+              summary: article.Summary,
+              URL: article.URL,
+              user:req.user._id
+
+          }).then(function (e) { 
+              return db.User.findByIdAndUpdate(`${req.user._id}`,{$push:{ notes: e._id}},{new:true});
+          })
+
+        });
+        
+     
 });
 
 module.exports = router;
