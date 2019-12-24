@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const passport = require('passport');
 const nocache = require('nocache');
+const flash = require('connect-flash');
 
 
 const app = express();
@@ -25,7 +26,7 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 
 
 //scrapped database when app is ran
-require('./scrappedArticle/article');
+// require('./scrappedArticle/article');
 
 
 
@@ -35,6 +36,7 @@ app.set('view engine', 'handlebars');
 
 //body parser
 app.use(express.urlencoded({extended:false}));
+app.use(express.json());
 
 //removes cache from browser
 app.use(nocache());
@@ -49,6 +51,16 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+app.use(flash());
+
+app.use(function(req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+})
 
 //routes 
 app.use('/', require('./routes/index'));

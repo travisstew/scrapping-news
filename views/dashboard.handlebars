@@ -1,6 +1,27 @@
-<h3>Welcome, {{data.name}}</h3>
 
-<div id="saved-news" class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/user/home">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/user/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/dashboard">Saved Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/logout">Logout</a>
+        </li>
+        
+      </ul>
+    </div>
+</nav>
+<h4 class="text-center">Welcome, {{data.name}}</h4>
+
+<div id="noted-news" class="container">
  {{#each data.notes}}
                  
 <div class="card text-center">
@@ -10,11 +31,17 @@
   <div class="card-body" >
   <h5 class="card-title" ><a href="https://www.newyorker.com/{{URL}}">{{headline}}</a></h5>
   <p class="card-text"  >{{summary}}</p>
-    {{!-- <a  id="save-btn" href="" class="btn btn-primary newsCard" data-id="{{_id}}" >Save Article</a> --}}
-    <button id="save-btn" class="btn btn-primary newsCard" type="button"  data-id="{{_id}}" >Note</button>
+    {{!-- <button  class="btn btn-primary " type="button"   >Note</button> --}}
+    <div class="input-group mb-3">
+      <input id="{{_id}}" type="text" class="form-control input" placeholder="Leave Note Here" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+    <button id="note-btn" class="btn btn-outline-secondary noteCard" type="button" data-id="{{_id}}">Note</button>
+    <button id="delete-btn" class="btn btn-outline-secondary deleteCard" type="button" data-id="{{_id}}">Delete</button>
+  </div>
+</div>
   </div>
   <div class="card-footer text-muted">
-    
+    <p>Note: {{note}}</p>
 
   </div>
 </div>

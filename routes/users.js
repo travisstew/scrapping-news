@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const authorized = require('../config/authorizedRoutes').ensureAuthenticated;
+
 const db = require('../model');
 // /user/routes
 //
@@ -23,6 +24,7 @@ router.post('/register', (req,res)=>{
      
     db.User.findOne({user:user}).then(newuser=>{
       if(newuser){
+       
         res.render('register',{
           errors: 'this user exist already'
         })
@@ -40,6 +42,7 @@ router.post('/register', (req,res)=>{
           newUser.password = hash;
           //save user 
           newUser.save({}).then(user =>{
+            req.flash('success_msg', "you are now registered")
             res.redirect('/user/login');
           }).catch(err=>{
             console.log(err);
@@ -60,7 +63,7 @@ router.post('/login', (req, res, next)=>{
   passport.authenticate('local',{
     successRedirect:'/user/home',
     failureRedirect: '/user/login',
-    // failureFlash:true
+    failureFlash:true
   })(req,res,next);
 });
 
@@ -68,6 +71,7 @@ router.post('/login', (req, res, next)=>{
 router.get('/logout', (req,res)=>{
   //passport middleware logout function 
   req.logOut();
+  req.flash('success_msg', 'you are logged out')
   res.redirect('/');
 });
 
@@ -89,15 +93,34 @@ router.post('/dashboard', (req,res)=>{
               headline:article.Headline,
               summary: article.Summary,
               URL: article.URL,
-              user:req.user._id
+              user:req.user._id,
+              note: "effe"
 
           }).then(function (e) { 
               return db.User.findByIdAndUpdate(`${req.user._id}`,{$push:{ notes: e._id}},{new:true});
-          })
-
-        });
+          });
+        });   
+  });
+//update note route 
+  router.put('/note/:id', (req,res)=>{
+        console.log(req.params.id);
+        console.log(req.body.note);
         
-     
-});
+      db.Notes.findByIdAndUpdate(`${req.params.id}`,{note: req.body.note} ).then(function () {
+          // res.render('dashboard');
+        });
+      res.render('dashboard');
+  });
+
+  router.delete('/delete', (req,res)=>{
+    console.log(req.body.id);
+    db.Notes.findByIdAndDelete(`${req.body.id}`).then(function () {
+
+      });
+      res.render('dashboard');
+  });
+
+
+  
 
 module.exports = router;
