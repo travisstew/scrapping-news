@@ -94,7 +94,7 @@ router.post('/dashboard', (req,res)=>{
               summary: article.Summary,
               URL: article.URL,
               user:req.user._id,
-              note: "effe"
+              
 
           }).then(function (e) { 
               return db.User.findByIdAndUpdate(`${req.user._id}`,{$push:{ notes: e._id}},{new:true});
