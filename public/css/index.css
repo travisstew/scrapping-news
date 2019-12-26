@@ -1,0 +1,24 @@
+body{
+  /* background: rgb(229,229,229); */
+  background: white;
+}
+div .card .card-body{
+  /* background: rgb(229,229,229); */
+  background: white;
+}
+*{
+  font-family: 'Arvo', serif;
+  
+}
+div .card{
+  border: none;
+}
+a{
+  color: black;
+}
+.card-title a{
+  font-size: 2rem;
+}
+form{
+  width:15rem;
+}

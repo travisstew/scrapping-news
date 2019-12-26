@@ -11,7 +11,7 @@ router.get('/home' , authorized ,(req,res)=>{
     db.Article.find({}).then((data)=>{
       res.render('userHome',{data:data});
 
-    })
+    });
 });
 //get register form
 router.get('/register', (req,res)=>{
@@ -111,7 +111,7 @@ router.post('/dashboard', (req,res)=>{
         });
       res.render('dashboard');
   });
-
+//route delete 
   router.delete('/delete', (req,res)=>{
     console.log(req.body.id);
     db.Notes.findByIdAndDelete(`${req.body.id}`).then(function () {
