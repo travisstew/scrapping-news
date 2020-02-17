@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/user/home">Navbar</a>
+<nav id="nav" class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand text-white" href="/user/home">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,26 +20,30 @@
 </nav>
 {{>messages}}
 
-<div class="jumbotron text-center">
-  <h1 class="display-4">News Scrapping</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+<div id="jumbo" class="jumbotron text-center">
+  {{!-- <h1 class="display-4">News Scrapping</h1> --}}
+  {{!-- <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p> --}}
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacingdf;hadjkfhkj to space content out within the larger container.</p>
-  <a class="btn btn-primary btn-lg " href="/user/dashboard" role="button">Dashboard</a>       
+  {{!-- <p>It uses utility classes for typography and spacingdf;hadjkfhkj to space content out within the larger container.</p> --}}
+  <a id="home-login-btn" class="btn btn-primary btn-lg " href="/user/dashboard" role="button">Dashboard</a>       
 </div>
+
+
 <div id="saved-news" class="container">
+  <div class="grid-container">
  {{#each data}}
                  
 <div class="card text-center">
   
-  <div class="card-body" >
-  <h5 class="card-title" ><a href="https://www.newyorker.com/{{URL}}">{{Headline}}</a></h5>
-  <p class="card-text"  >{{Summary}}</p>
-    {{!-- <a  id="save-btn" href="" class="btn btn-primary newsCard" data-id="{{_id}}" >Save Article</a> --}}
-    <button id="save-btn" class="btn btn-primary newsCard" type="button"  data-id="{{_id}}" >Save Article</button>
+  <div class="card-body grid-item" >
+    <h5 class="card-title pb-2" ><a href="https://www.newyorker.com/{{URL}}">{{Headline}}</a></h5>
+    <p class="card-text pb-2"  >{{Summary}}</p>
+      {{!-- <a  id="save-btn" href="" class="btn btn-primary newsCard" data-id="{{_id}}" >Save Article</a> --}}
+    <button id="save-btn" class="btn btn-primary btn-outline-dark newsCard" type="button"  data-id="{{_id}}" >Save Article</button>
   </div>
  
 </div>
 
  {{/each}}
+  </div>
  </div>

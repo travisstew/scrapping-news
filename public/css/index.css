@@ -1,10 +1,14 @@
 body{
-  /* background: rgb(229,229,229); */
-  background: white;
+  /* background: rgb(240,243,248); */
+
+
 }
 div .card .card-body{
-  /* background: rgb(229,229,229); */
-  background: white;
+
+  /* background: rgb(240,243,248); */
+}
+.container{
+  /* background: rgb(240,243,248); */
 }
 *{
   font-family: 'Arvo', serif;
@@ -12,6 +16,7 @@ div .card .card-body{
 }
 div .card{
   border: none;
+  /* background: rgb(240,243,248); */
 }
 a{
   color: black;
@@ -21,4 +26,45 @@ a{
 }
 form{
   width:15rem;
+}
+#jumbo{
+  background-image: url('../images/news.jpg');
+  height:25rem;
+  /* border-bottom: white solid .5rem; */
+}
+#nav li  a{
+  color: white;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+#nav{
+  background: #5b8c85;
+}
+#home-login-btn{
+  background-color: #C81914;
+
+}
+#save-btn{
+  background-color: white;
+}
+#save-btn:hover{
+  background: darkgrey;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 840px){
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto ;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 420px){
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto  ;
+  }
 }

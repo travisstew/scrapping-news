@@ -1,11 +1,11 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav id="nav" class="navbar navbar-expand-lg navbar-light sticky-top ">
+    <a class="navbar-brand text-white" href="#">News Scrap</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav text-white">
         <li class="nav-item active">
           <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
         </li>
@@ -19,24 +19,31 @@
       </ul>
     </div>
 </nav>
+
 {{>messages}}
-<div class="jumbotron text-center">
-  <h1 class="display-4">News Scrapping</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  {{!-- <hr class="my-4"> --}}
-  {{!-- <p>It uses utility classes for typography and spacingdf;hadjkfhkj to space content out within the larger container.</p> --}}
-  <a class="btn btn-primary btn-lg  " href="/user/login" role="button">Login In</a>       
+
+<div class="overlay">
+  <div id="jumbo" class="jumbotron text-center">
+    <div>
+    <h1 class="display-4">News Scrapping</h1>
+    <p class="lead">Save and Leave Notes from your favorite article</p>
+    {{!-- <hr class="my-4"> --}}
+    {{!-- <p>It uses utility classes for typography and spacingdf;hadjkfhkj to space content out within the larger container.</p> --}}
+    <a id="home-login-btn" class="btn btn-primary btn-lg  " href="/user/login" role="button">Login In</a>       
+    </div>
+  </div>
 </div>
 
-
 <div class="container">  
+  <div class="grid-container">
  {{#each data}}
        
 <div class="card text-center pb-4" id="{{_id}}">
+  
   {{!-- <div class="card-header">
     Featured
   </div> --}}
-  <div class="card-body" >
+  <div class="card-body grid-item" >
   <h5 class="card-title pb-2" ><a target="_blank" href="https://www.newyorker.com/{{URL}}">{{Headline}}</a></h5>
   <p class="card-text pb-2 "  >{{Summary}}</p>
     <a href="/user/home" class="btn btn-outline-dark ">Save Article</a>
@@ -48,7 +55,7 @@
 </div>
 
  {{/each}}
- 
+  </div>
  </div>
 
- <div class="fixed-bottom">..jdkjsf;klaj;kfjd;kl.</div>
+ {{!-- <div class="fixed-bottom">..jdkjsf;klaj;kfjd;kl.</div> --}}
