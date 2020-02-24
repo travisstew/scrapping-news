@@ -6,9 +6,9 @@ This is a web app that scraps articles from "www.newYorker.com".  When the page 
 
 ## Installation
 
-$ npm install -s axios
-$ npm install -s bcryptjs
-$ npm install -s cheerio
+> $ npm install -s axios
+> $ npm install -s bcryptjs
+> $ npm install -s cheerio
 $ npm install -s connect-flash
 $ npm install -s express 
 $ npm install -s express-handlebars
