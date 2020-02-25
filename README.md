@@ -24,7 +24,8 @@ This is a web app that scraps articles from "www.newYorker.com".  When the page 
 
 ## License 
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)]
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+
 ## Deployment 
  - Heroku 
 
