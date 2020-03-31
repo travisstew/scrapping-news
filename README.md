@@ -8,8 +8,13 @@ This is a web app that scraps articles from "www.newYorker.com".  When the page 
 
 ![alt text](public/images/newsgif.gif)
 
-### npm 
+## Installation
+
+- clone repo
 - install: `npm install --save`
+- create .gitignore file and add node_modules inside 
+- inside routes folder, `index.js` - add the website you want to scrap inside axios get request `axios.get("https://www.websiteofyourchoice")`
+
 
 ## License 
 
